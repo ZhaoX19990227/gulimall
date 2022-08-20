@@ -9,14 +9,38 @@
     <name>gulimall</name>
     <description>聚合服务</description>
     <packaging>pom</packaging>
-
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.2.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 <modules>
     <module>gulimall-coupon</module>
     <module>gulimall-member</module>
     <module>gulimall-order</module>
     <module>gulimall-product</module>
     <module>gulimall-ware</module>
+    <module>gulimall-common</module>
 </modules>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.2.6.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.SR8</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
+        </dependencies>
+    </dependencyManagement>
 </project>
