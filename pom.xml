@@ -22,6 +22,9 @@
     <module>gulimall-product</module>
     <module>gulimall-ware</module>
     <module>gulimall-common</module>
+    <module>gulimall-gateway</module>
+    <module>renren-fast</module>
+    <module>gulimall-third-party</module>
 </modules>
     <dependencyManagement>
         <dependencies>
@@ -32,6 +35,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
 
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
