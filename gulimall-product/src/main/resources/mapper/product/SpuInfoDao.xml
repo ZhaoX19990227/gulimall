@@ -3,7 +3,7 @@
 
 <mapper namespace="com.atguigu.gulimall.product.dao.SpuInfoDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.atguigu.gulimall.product.entity.SpuInfoEntity" id="spuInfoMap">
         <result property="id" column="id"/>
         <result property="spuName" column="spu_name"/>
@@ -17,7 +17,16 @@
     </resultMap>
 
     <update id="updaSpuStatus">
-        UPDATE pms_spu_info SET publish_status = #{code} ,update_time = NOW() WHERE id = #{spuId}
+        UPDATE pms_spu_info
+        SET publish_status = #{code},
+            update_time    = NOW()
+        WHERE id = #{spuId}
+    </update>
+    <update id="updateSpuStatus">
+        update pms_spu_info
+        set publish_status=#{code},
+            update_time=NOW()
+        where id = #{spuId}
     </update>
 
 
