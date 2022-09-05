@@ -1,4 +1,4 @@
-/*
+
 package com.atguigu.gulimall.product.config;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -10,13 +10,7 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-*/
-/**
- * @Description: 线程池配置类
- * @Created: with IntelliJ IDEA.
- * @author: 夏沫止水
- * @createTime: 2020-06-23 20:24
- **//*
+
 
 
 @EnableConfigurationProperties(ThreadPoolConfigProperties.class)
@@ -38,4 +32,3 @@ public class MyThreadConfig {
     }
 
 }
-*/

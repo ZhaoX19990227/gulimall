@@ -42,7 +42,6 @@ public class BrandController {
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("product:brand:list")
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = brandService.queryPage(params);
 
@@ -69,9 +68,9 @@ public class BrandController {
     public R save(@Validated({AddGroup.class}) @RequestBody BrandEntity brand/*, BindingResult result*/) {
        /* if (result.hasErrors()) {
             HashMap<String, String> map = new HashMap<>();
-            result.getFieldErrors().forEach((item) -> {
-                String message = item.getDefaultMessage();
-                String field = item.getField();
+            result.getFieldErrors().forEach((skuItem) -> {
+                String message = skuItem.getDefaultMessage();
+                String field = skuItem.getField();
                 map.put(field, message);
             });
             return R.error(400, "提交的数据不合法！").put("data", map);

@@ -23,7 +23,15 @@ import java.util.Map;
 public class R extends HashMap<String, Object> {
 	private static final long serialVersionUID = 1L;
 
-//fastjson进行逆转
+
+	public <T> T getData(String key,TypeReference<T> tTypeReference) {
+		Object data = get(key);//默认是map对象
+		String s = JSON.toJSONString(data);
+		T t = JSON.parseObject(s, tTypeReference);
+		return t;
+	}
+
+	//fastjson进行逆转
 	public <T> T getData(TypeReference<T> tTypeReference) {
 		Object data = get("data");//默认是map对象
 		String s = JSON.toJSONString(data);

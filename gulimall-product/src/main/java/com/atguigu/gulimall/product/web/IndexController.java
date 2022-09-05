@@ -3,14 +3,21 @@ package com.atguigu.gulimall.product.web;
 import com.atguigu.gulimall.product.entity.CategoryEntity;
 import com.atguigu.gulimall.product.service.CategoryService;
 import com.atguigu.gulimall.product.vo.Catelog2Vo;
+import org.redisson.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 
 @Controller
@@ -19,11 +26,11 @@ public class IndexController {
     @Resource
     private CategoryService categoryService;
 
-   /* @Autowired
-    private RedissonClient redisson;*/
+    @Autowired
+    private RedissonClient redisson;
 
-   /* @Autowired
-    private StringRedisTemplate stringRedisTemplate;*/
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
     @GetMapping(value = {"/","index.html"})
     private String indexPage(Model model) {
@@ -45,7 +52,6 @@ public class IndexController {
         return catalogJson;
 
     }
-/**
 
     @ResponseBody
     @GetMapping(value = "/hello")
@@ -79,7 +85,7 @@ public class IndexController {
     }
 
 
-    *//**
+    /**
      * 保证一定能读到最新数据，修改期间，写锁是一个排它锁（互斥锁、独享锁），读锁是一个共享锁
      * 写锁没释放读锁必须等待
      * 读 + 读 ：相当于无锁，并发读，只会在Redis中记录好，所有当前的读锁。他们都会同时加锁成功
@@ -88,7 +94,8 @@ public class IndexController {
      * 读 + 写 ：有读锁。写也需要等待
      * 只要有读或者写的存都必须等待
      * @return
-     *//*
+     * **/
+
     @GetMapping(value = "/write")
     @ResponseBody
     public String writeValue() {
@@ -133,11 +140,11 @@ public class IndexController {
     }
 
 
-    *//**
+    /**
      * 车库停车
      * 3车位
-     * 信号量也可以做分布式限流
-     *//*
+     * 信号量也可以做分布式限流*/
+
     @GetMapping(value = "/park")
     @ResponseBody
     public String park() throws InterruptedException {
@@ -164,12 +171,12 @@ public class IndexController {
     }
 
 
-    *//**
+    /**
      * 放假、锁门
      * 1班没人了
      * 5个班，全部走完，我们才可以锁大门
      * 分布式闭锁
-     *//*
+     */
 
     @GetMapping(value = "/lockDoor")
     @ResponseBody
@@ -190,5 +197,4 @@ public class IndexController {
 
         return id + "班的人都走了...";
     }
-*/
 }

@@ -1,6 +1,7 @@
-/*
+
 package com.atguigu.gulimall.product.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.EnableCaching;
@@ -11,13 +12,6 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-*/
-/**
- * @Description:
- * @Created: with IntelliJ IDEA.
- * @author: 夏沫止水
- * @createTime: 2020-06-12 15:19
- **//*
 
 
 @EnableConfigurationProperties(CacheProperties.class)
@@ -25,15 +19,13 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @EnableCaching
 public class MyCacheConfig {
 
-    // @Autowired
-    // public CacheProperties cacheProperties;
+    @Autowired
+    public CacheProperties cacheProperties;
 
-    */
-/**
+    /**
      * 配置文件的配置没有用上
      * @return
-     *//*
-
+     */
     @Bean
     public RedisCacheConfiguration redisCacheConfiguration(CacheProperties cacheProperties) {
 
@@ -56,9 +48,7 @@ public class MyCacheConfig {
         if (!redisProperties.isUseKeyPrefix()) {
             config = config.disableKeyPrefix();
         }
-
         return config;
     }
-
 }
-*/
+

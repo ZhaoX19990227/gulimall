@@ -1,4 +1,4 @@
-/*
+
 package com.atguigu.gulimall.product.web;
 
 import com.atguigu.gulimall.product.service.SkuInfoService;
@@ -18,13 +18,11 @@ public class ItemController {
 
     @Resource
     private SkuInfoService skuInfoService;
-
-    */
 /**
      * 展示当前sku的详情
      * @param skuId
      * @return
-     *//*
+     */
 
     @GetMapping("/{skuId}.html")
     public String skuItem(@PathVariable("skuId") Long skuId, Model model) throws ExecutionException, InterruptedException {
@@ -37,4 +35,4 @@ public class ItemController {
 
         return "item";
     }
-}*/
+}

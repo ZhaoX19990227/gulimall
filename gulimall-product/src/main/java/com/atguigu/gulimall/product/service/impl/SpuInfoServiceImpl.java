@@ -221,20 +221,24 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
     public void up(Long spuId) {
         //1、查出当前spuId对应的所有sku，品牌名
         List<SkuInfoEntity> skus = skuInfoService.getSkusBySpuId(spuId);
-        List<Long> skuIdList = skus.stream().map(SkuInfoEntity::getSkuId).collect(Collectors.toList());
-
+        //2、获取所有的skuId
+        List<Long> skuIdList = skus.stream()
+                .map(SkuInfoEntity::getSkuId)
+                .collect(Collectors.toList());
+        //3、查出所有规格属性
         List<ProductAttrValueEntity> baseAttrs = attrValueService.baseAttrlistforspu(spuId);
         List<Long> attrIds = baseAttrs.stream().map(attr -> {
             return attr.getAttrId();
         }).collect(Collectors.toList());
-        // 4.查询当前sku【所有可以被检索】的【规格属性】
+        //4、查询当前sku【所有可以被检索】的【规格属性】
         List<Long> searchAttrIds = attrService.selectSearchAttrs(attrIds);
-
+        //4.1、转为Set集合
         Set<Long> idSet = new HashSet<>(searchAttrIds);
         List<SkuEsModel.Attrs> attrsList = baseAttrs.stream().filter(item -> {
-            //如果包含就是【可用的规格属性】
+            //4.2、如果包含就是【可用的规格属性】
             return idSet.contains(item.getAttrId());
         }).map(item -> {
+            //4.3、封装成  SkuEsModel.Attrs
             SkuEsModel.Attrs attrs1 = new SkuEsModel.Attrs();
             BeanUtils.copyProperties(item, attrs1);
             return attrs1;
@@ -242,16 +246,19 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
 
         Map<Long, Boolean> stockMap = null;
         try {
-            //1.发送远程调用，库存系统查询是否有库存
+            //5、发送远程调用，库存系统查询是否有库存
             R r = wareFeignService.getSkusHasStock(skuIdList);
-            TypeReference<List<SkuHasStockVo>> typeReference = new TypeReference<List<SkuHasStockVo>>() {
-            };
-            stockMap = r.getData(typeReference).stream().collect(Collectors.toMap(SkuHasStockVo::getSkuId, item -> item.getHasStock()));
+            TypeReference<List<SkuHasStockVo>> typeReference =
+                    new TypeReference<List<SkuHasStockVo>>() {
+                    };
+            stockMap = r.getData(typeReference)
+                    .stream()
+                    .collect(Collectors.toMap(SkuHasStockVo::getSkuId, item -> item.getHasStock()));
         } catch (Exception e) {
             log.error("库存服务查询异常：{}", e);
         }
 
-        //2、封装每个sku的信息
+        //6、封装每个sku的信息
         Map<Long, Boolean> finalStockMap = stockMap;
         List<SkuEsModel> upProducts = skus.stream().map(sku -> {
             SkuEsModel esModel = new SkuEsModel();
@@ -278,16 +285,15 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
             return esModel;
         }).collect(Collectors.toList());
 
-        //4 TODO 发给es  gulimall-search
+        //4 发给es gulimall-search
         R r = searchFeignService.productStatusUp(upProducts);
         if (r.getCode() == 0) {
             //远程调用成功
-            //TODO 修改spu的状态
+            //修改spu的状态
             baseMapper.updateSpuStatus(spuId, ProductConstant.ProductStatusEnum.SPU_UP.getCode());
         } else {
             //失败
             //TODO 重复调用 接口幂等性 重试机制
         }
     }
-
 }

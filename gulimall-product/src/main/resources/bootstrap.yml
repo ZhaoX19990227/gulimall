@@ -14,6 +14,17 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
   thymeleaf:
     cache: false
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  cache:
+    type: redis
+    redis:
+      time-to-live: 36000000
+      #key-prefix: CACHE_
+      use-key-prefix: true
+      # 缓存空值 防止缓存穿透
+      cache-null-values: true
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
   global-config:
@@ -32,3 +43,8 @@ alibaba:
     secret-key: 209ojkb1t63CpwA2SsqYc9Qw4szG8U
     oss:
       endpoint: oss-cn-nanjing.aliyuncs.com
+gulimall:
+  thread:
+    core-size: 20
+    max-size: 200
+    keep-alive-time: 10

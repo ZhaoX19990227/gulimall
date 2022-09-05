@@ -4,14 +4,15 @@ import java.util.Arrays;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.atguigu.common.exception.BizCodeEnum;
+import com.atguigu.gulimall.member.exception.PhoneException;
+import com.atguigu.gulimall.member.exception.UsernameException;
 import com.atguigu.gulimall.member.feign.CouponsFeignClient;
+import com.atguigu.gulimall.member.vo.MemberUserLoginVo;
+import com.atguigu.gulimall.member.vo.MemberUserRegisterVo;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.atguigu.gulimall.member.entity.MemberEntity;
 import com.atguigu.gulimall.member.service.MemberService;
@@ -47,10 +48,42 @@ public class MemberController {
     }
 
     /**
+     * 会员注册
+     */
+    @PostMapping("/register")
+    public R register(@RequestBody MemberUserRegisterVo vo) {
+        try {
+            memberService.register(vo);
+        } catch (PhoneException e) {
+            return R.error(BizCodeEnum.PHONE_EXIST_EXCEPTION.getCode(),BizCodeEnum.PHONE_EXIST_EXCEPTION.getMessage());
+        } catch (UsernameException e) {
+            return R.error(BizCodeEnum.USER_EXIST_EXCEPTION.getCode(),BizCodeEnum.USER_EXIST_EXCEPTION.getMessage());
+        }
+
+        return R.ok();
+    }
+
+    /**
+     * 会员登陆
+     * @param vo
+     * @return
+     */
+    @PostMapping(value = "/login")
+    public R login(@RequestBody MemberUserLoginVo vo) {
+
+        MemberEntity memberEntity = memberService.login(vo);
+
+        if (memberEntity != null) {
+            return R.ok().setData(memberEntity);
+        } else {
+            return R.error(BizCodeEnum.LOGINACCT_PASSWORD_EXCEPTION.getCode(),BizCodeEnum.LOGINACCT_PASSWORD_EXCEPTION.getMessage());
+        }
+    }
+
+    /**
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("member:member:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = memberService.queryPage(params);
 
@@ -62,7 +95,6 @@ public class MemberController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("member:member:info")
     public R info(@PathVariable("id") Long id){
 		MemberEntity member = memberService.getById(id);
 
@@ -73,7 +105,6 @@ public class MemberController {
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("member:member:save")
     public R save(@RequestBody MemberEntity member){
 		memberService.save(member);
 
@@ -84,7 +115,6 @@ public class MemberController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("member:member:update")
     public R update(@RequestBody MemberEntity member){
 		memberService.updateById(member);
 
@@ -95,7 +125,6 @@ public class MemberController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("member:member:delete")
     public R delete(@RequestBody Long[] ids){
 		memberService.removeByIds(Arrays.asList(ids));
 

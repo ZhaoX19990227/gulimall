@@ -1,0 +1,27 @@
+\spring:
+  application:
+    name: gulimall-cart
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  thymeleaf:
+    cache: false
+
+server:
+  port: 50000
+logging:
+  level:
+    com.atguigu.gulimall: debug
+spring:
+  redis:
+    port: 6379
+    host: 127.0.0.1
+
+gulimall:
+  thread:
+    max-size: 50
+    core-size: 20
+    keep-alive-time: 10

@@ -10,5 +10,7 @@ spring:
     password: zx123456
     url: jdbc:mysql://localhost:3306/gulimall_pms
     driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    cache: false
 server:
   port: 20000
