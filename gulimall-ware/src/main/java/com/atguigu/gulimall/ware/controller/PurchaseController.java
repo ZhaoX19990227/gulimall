@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-//import org.apache.shiro.authz.annotation.RequiresPermissions;
 import com.atguigu.gulimall.ware.vo.MergeVo;
 import com.atguigu.gulimall.ware.vo.PurchaseDoneVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +18,6 @@ import com.atguigu.common.utils.R;
 
 /**
  * 采购信息
- *
- * @author zhaoxiang
- * @email 1084691005@qq.com
- * @date 2022-08-20 15:57:15
  */
 @RestController
 @RequestMapping("ware/purchase")
@@ -30,41 +25,40 @@ public class PurchaseController {
     @Autowired
     private PurchaseService purchaseService;
 
-    /**
-     * 完成采购单
-     * @param doneVo
-     * @return
-     */
+    ///ware/purchase/done
     @PostMapping("/done")
     public R finish(@RequestBody PurchaseDoneVo doneVo) {
-        purchaseService.done(doneVo);
-        return R.ok();
-    }
 
-    @PostMapping("/received")
-    public R received(@RequestBody List<Long> ids) {
-        purchaseService.received(ids);
+        purchaseService.done(doneVo);
+
         return R.ok();
     }
 
     /**
-     * 合并采购单
-     * @param mergeVo
+     * 领取采购单
+     *
      * @return
      */
+    @PostMapping("/received")
+    public R received(@RequestBody List<Long> ids) {
+
+        purchaseService.received(ids);
+
+        return R.ok();
+    }
+
+    ///ware/purchase/unreceive/list
+    ///ware/purchase/merge
     @PostMapping("/merge")
     public R merge(@RequestBody MergeVo mergeVo) {
+
         purchaseService.mergePurchase(mergeVo);
         return R.ok();
     }
 
-
-    /**
-     * 列表
-     */
     @RequestMapping("/unreceive/list")
-    public R unreceiveList(@RequestParam Map<String, Object> params) {
-        PageUtils page = purchaseService.queryPageUnreceive(params);
+    public R unreceivelist(@RequestParam Map<String, Object> params) {
+        PageUtils page = purchaseService.queryPageUnreceivePurchase(params);
 
         return R.ok().put("page", page);
     }
@@ -95,8 +89,8 @@ public class PurchaseController {
      */
     @RequestMapping("/save")
     public R save(@RequestBody PurchaseEntity purchase) {
-        purchase.setCreateTime(new Date());
         purchase.setUpdateTime(new Date());
+        purchase.setCreateTime(new Date());
         purchaseService.save(purchase);
 
         return R.ok();

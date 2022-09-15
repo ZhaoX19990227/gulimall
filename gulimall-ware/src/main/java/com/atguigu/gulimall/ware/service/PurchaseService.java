@@ -12,20 +12,25 @@ import java.util.Map;
 /**
  * 采购信息
  *
- * @author zhaoxiang
- * @email 1084691005@qq.com
- * @date 2022-08-20 15:57:15
+ * @author leifengyang
+ * @email leifengyang@gmail.com
+ * @date 2019-11-17 13:50:10
  */
 public interface PurchaseService extends IService<PurchaseEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
 
-    PageUtils queryPageUnreceive(Map<String, Object> params);
+    PageUtils queryPageUnreceivePurchase(Map<String, Object> params);
+
 
     void mergePurchase(MergeVo mergeVo);
 
+
     void received(List<Long> ids);
 
+
     void done(PurchaseDoneVo doneVo);
+
+
 }
 

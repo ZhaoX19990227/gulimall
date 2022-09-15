@@ -194,7 +194,6 @@ public class CartServiceImpl implements CartService {
             return cartItemVoStream;
         }
         return null;
-
     }
 
 
@@ -273,8 +272,9 @@ public class CartServiceImpl implements CartService {
                     .filter(items -> items.getCheck())
                     .map(item -> {
                         //更新为最新的价格（查询数据库）
-                        BigDecimal price = productFeignService.getPrice(item.getSkuId());
-                        item.setPrice(price);
+                        R price = productFeignService.getPrice(item.getSkuId());
+                        String data = (String) price.get("data");
+                        item.setPrice(new BigDecimal(data));
                         return item;
                     })
                     .collect(Collectors.toList());
