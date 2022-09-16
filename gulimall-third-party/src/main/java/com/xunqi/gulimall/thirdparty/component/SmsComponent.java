@@ -41,5 +41,4 @@ public class SmsComponent {
             e.printStackTrace();
         }
     }
-
 }

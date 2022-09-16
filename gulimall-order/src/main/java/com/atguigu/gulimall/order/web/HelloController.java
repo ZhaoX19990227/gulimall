@@ -11,12 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Date;
 import java.util.UUID;
 
-/**
- * @Description:
- * @Created: with IntelliJ IDEA.
- * @author: 夏沫止水
- * @createTime: 2020-07-02 17:00
- **/
 
 @Controller
 public class HelloController {

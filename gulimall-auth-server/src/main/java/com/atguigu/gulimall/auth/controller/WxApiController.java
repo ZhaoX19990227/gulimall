@@ -20,12 +20,7 @@ import java.net.URLEncoder;
 import static com.xunqi.common.constant.AuthServerConstant.LOGIN_USER;
 
 */
-/**
- * @Description:
- * @Created: with IntelliJ IDEA.
- * @author: 夏沫止水
- * @createTime: 2020-08-10 20:28
- **//*
+/*
 
 
 @Slf4j
