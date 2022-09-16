@@ -1,12 +1,11 @@
-/*
+
 package com.atguigu.gulimall.order.listener;
 
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.atguigu.gulimall.order.service.OrderService;
-import com.xunqi.gulimall.order.config.AlipayTemplate;
-import com.xunqi.gulimall.order.service.OrderService;
-import com.xunqi.gulimall.order.vo.PayAsyncVo;
+import com.atguigu.gulimall.order.config.AlipayTemplate;
+import com.atguigu.gulimall.order.vo.PayAsyncVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,13 +16,10 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-*/
+
 /**
  * @Description: 订单支付成功监听器
- * @Created: with IntelliJ IDEA.
- * @author: 夏沫止水
- * @createTime: 2020-07-08 17:39
- **//*
+ **/
 
 
 @RestController
@@ -54,9 +50,12 @@ public class OrderPayedListener {
             params.put(name, valueStr);
         }
 
-        boolean signVerified = AlipaySignature.rsaCheckV1(params, alipayTemplate.getAlipay_public_key(),
-                alipayTemplate.getCharset(), alipayTemplate.getSign_type()); //调用SDK验证签名
-
+        boolean signVerified = AlipaySignature.rsaCheckV1(
+                params,
+                alipayTemplate.getAlipay_public_key(),
+                alipayTemplate.getCharset(),
+                alipayTemplate.getSign_type()); //调用SDK验证签名
+        System.out.println("signVerified" + signVerified);
         if (signVerified) {
             System.out.println("签名验证成功...");
             //去修改订单状态
@@ -68,11 +67,10 @@ public class OrderPayedListener {
         }
     }
 
-    @PostMapping(value = "/pay/notify")
+   /* @PostMapping(value = "/pay/notify")
     public String asyncNotify(@RequestBody String notifyData) {
         //异步通知结果
         return orderService.asyncNotify(notifyData);
-    }
+    }*/
 
 }
-*/

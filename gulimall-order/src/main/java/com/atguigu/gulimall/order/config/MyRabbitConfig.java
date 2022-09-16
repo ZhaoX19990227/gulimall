@@ -67,6 +67,7 @@ public class MyRabbitConfig {
          * routingKey：当时这个消息用哪个路邮键
          */
         rabbitTemplate.setReturnCallback((message,replyCode,replyText,exchange,routingKey) -> {
+            //TODO：报错，修改数据库当前消息的状态--->错误
             System.out.println("Fail Message["+message+"]==>replyCode["+replyCode+"]" +
                     "==>replyText["+replyText+"]==>exchange["+exchange+"]==>routingKey["+routingKey+"]");
         });

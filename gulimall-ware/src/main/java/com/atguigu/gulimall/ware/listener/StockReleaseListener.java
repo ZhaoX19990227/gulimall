@@ -24,12 +24,12 @@ public class StockReleaseListener {
 
     /**
      * 1、库存自动解锁
-     *  下订单成功，库存锁定成功，接下来的业务调用失败，导致订单回滚。之前锁定的库存就要自动解锁
-     *
-     *  2、订单失败
-     *      库存锁定失败
-     *
-     *   只要解锁库存的消息失败，一定要告诉服务解锁失败
+     * 下订单成功，库存锁定成功，接下来的业务调用失败，导致订单回滚。之前锁定的库存就要自动解锁
+     * <p>
+     * 2、订单失败
+     * 库存锁定失败
+     * <p>
+     * 只要解锁库存的消息失败，一定要告诉服务解锁失败
      */
     @RabbitHandler
     public void handleStockLockedRelease(StockLockedTo to, Message message, Channel channel) throws IOException {
@@ -42,10 +42,10 @@ public class StockReleaseListener {
             //解锁库存
             wareSkuService.unlockStock(to);
             // 手动删除消息
-            channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
         } catch (Exception e) {
             // 解锁失败 将消息重新放回队列，让别人消费
-            channel.basicReject(message.getMessageProperties().getDeliveryTag(),true);
+            channel.basicReject(message.getMessageProperties().getDeliveryTag(), true);
         }
     }
 
@@ -57,10 +57,10 @@ public class StockReleaseListener {
         try {
             wareSkuService.unlockStock(orderTo);
             // 手动删除消息
-            channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
         } catch (Exception e) {
             // 解锁失败 将消息重新放回队列，让别人消费
-            channel.basicReject(message.getMessageProperties().getDeliveryTag(),true);
+            channel.basicReject(message.getMessageProperties().getDeliveryTag(), true);
         }
     }
 }
