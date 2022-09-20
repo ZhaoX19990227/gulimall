@@ -292,6 +292,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     /**
      * 获取当前订单的支付信息
+     *
      * @param orderSn
      * @return
      */
@@ -319,6 +320,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     /**
      * 查询当前用户所有订单数据
+     *
      * @param params
      * @return
      */
@@ -330,7 +332,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         IPage<OrderEntity> page = this.page(
                 new Query<OrderEntity>().getPage(params),
                 new QueryWrapper<OrderEntity>()
-                        .eq("member_id",memberResponseVo.getId()).orderByDesc("create_time")
+                        .eq("member_id", memberResponseVo.getId()).orderByDesc("create_time")
         );
 
         //遍历所有订单集合
@@ -349,6 +351,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     /**
      * 处理支付宝的支付结果
+     *
      * @param asyncVo
      * @return
      */
@@ -375,7 +378,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         if (tradeStatus.equals("TRADE_SUCCESS") || tradeStatus.equals("TRADE_FINISHED")) {
             //支付成功状态
             String orderSn = asyncVo.getOut_trade_no(); //获取订单号
-            this.updateOrderStatus(orderSn,OrderStatusEnum.PAYED.getCode(), PayConstant.ALIPAY);
+            this.updateOrderStatus(orderSn, OrderStatusEnum.PAYED.getCode(), PayConstant.ALIPAY);
         }
 
         return "success";
@@ -383,12 +386,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     /**
      * 修改订单状态
+     *
      * @param orderSn
      * @param code
      */
-    private void updateOrderStatus(String orderSn, Integer code,Integer payType) {
+    private void updateOrderStatus(String orderSn, Integer code, Integer payType) {
 
-        this.baseMapper.updateOrderStatus(orderSn,code,payType);
+        this.baseMapper.updateOrderStatus(orderSn, code, payType);
     }
 
     private OrderCreateTo createOrder() {

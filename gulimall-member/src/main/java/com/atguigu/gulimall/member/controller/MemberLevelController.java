@@ -35,7 +35,6 @@ public class MemberLevelController {
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("member:memberlevel:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = memberLevelService.queryPage(params);
 
@@ -47,7 +46,6 @@ public class MemberLevelController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("member:memberlevel:info")
     public R info(@PathVariable("id") Long id){
 		MemberLevelEntity memberLevel = memberLevelService.getById(id);
 
@@ -58,7 +56,6 @@ public class MemberLevelController {
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("member:memberlevel:save")
     public R save(@RequestBody MemberLevelEntity memberLevel){
 		memberLevelService.save(memberLevel);
 
@@ -69,7 +66,6 @@ public class MemberLevelController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("member:memberlevel:update")
     public R update(@RequestBody MemberLevelEntity memberLevel){
 		memberLevelService.updateById(memberLevel);
 

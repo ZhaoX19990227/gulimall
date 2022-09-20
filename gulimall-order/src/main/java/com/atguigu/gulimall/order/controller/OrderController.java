@@ -34,7 +34,6 @@ public class OrderController {
      * @return
      */
     @PostMapping("/listWithItem")
-    //@RequiresPermissions("order:order:list")
     public R listWithItem(@RequestBody Map<String, Object> params){
         PageUtils page = orderService.queryPageWithItem(params);
 

@@ -19,22 +19,19 @@ public class GuliFeignConfig {
     @Bean("requestInterceptor")
     public RequestInterceptor requestInterceptor() {
 
-        RequestInterceptor requestInterceptor = new RequestInterceptor() {
-            @Override
-            public void apply(RequestTemplate template) {
-                //1、使用RequestContextHolder拿到刚进来的请求数据
-                ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        RequestInterceptor requestInterceptor = template -> {
+            //1、使用RequestContextHolder拿到刚进来的请求数据
+            ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 
-                if (requestAttributes != null) {
-                    //老请求
-                    HttpServletRequest request = requestAttributes.getRequest();
+            if (requestAttributes != null) {
+                //老请求
+                HttpServletRequest request = requestAttributes.getRequest();
 
-                    if (request != null) {
-                        //2、同步请求头的数据（主要是cookie）
-                        //把老请求的cookie值放到新请求上来，进行一个同步
-                        String cookie = request.getHeader("Cookie");
-                        template.header("Cookie", cookie);
-                    }
+                if (request != null) {
+                    //2、同步请求头的数据（主要是cookie）
+                    //把老请求的cookie值放到新请求上来，进行一个同步
+                    String cookie = request.getHeader("Cookie");
+                    template.header("Cookie", cookie);
                 }
             }
         };

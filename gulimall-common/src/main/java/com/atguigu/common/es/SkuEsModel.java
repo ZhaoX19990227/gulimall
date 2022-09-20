@@ -46,6 +46,4 @@ public class SkuEsModel {
         private String attrValue;
 
     }
-
-
 }
