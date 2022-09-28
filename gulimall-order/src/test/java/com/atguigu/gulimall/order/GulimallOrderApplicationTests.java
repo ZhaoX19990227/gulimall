@@ -45,9 +45,9 @@ public class GulimallOrderApplicationTests {
     }
 
     @Test
-    public void sendMsg(){
+    public void sendMsg() {
         String msg = "你好啊！";
-        rabbitTemplate.convertAndSend("hello-tatan","hello.java",msg.getClass());
-        log.info("消息发送成功{}",msg);
+        rabbitTemplate.convertAndSend("hello-tatan", "hello.java", msg.getClass());
+        log.info("消息发送成功{}", msg);
     }
 }

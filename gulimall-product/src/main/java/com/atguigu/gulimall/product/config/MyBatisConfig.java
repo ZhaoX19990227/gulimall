@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
-
 @Configuration
 @EnableTransactionManagement        //开启使用
 @MapperScan("com.xunqi.gulimall.product.dao")

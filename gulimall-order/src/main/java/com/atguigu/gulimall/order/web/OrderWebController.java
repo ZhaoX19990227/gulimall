@@ -1,8 +1,8 @@
 package com.atguigu.gulimall.order.web;
 
+import com.atguigu.common.exception.NoStockException;
 import com.atguigu.gulimall.order.service.OrderService;
 import com.atguigu.gulimall.order.vo.OrderConfirmVo;
-import com.atguigu.common.exception.NoStockException;
 import com.atguigu.gulimall.order.vo.OrderSubmitVo;
 import com.atguigu.gulimall.order.vo.SubmitOrderResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +23,7 @@ public class OrderWebController {
 
     /**
      * 去结算确认页
+     *
      * @param model
      * @param request
      * @return
@@ -34,7 +35,7 @@ public class OrderWebController {
 
         OrderConfirmVo confirmVo = orderService.confirmOrder();
 
-        model.addAttribute("confirmOrderData",confirmVo);
+        model.addAttribute("confirmOrderData", confirmVo);
         //展示订单确认的数据
 
         return "confirm";
@@ -43,6 +44,7 @@ public class OrderWebController {
 
     /**
      * 下单功能
+     *
      * @param vo
      * @return
      */
@@ -55,22 +57,28 @@ public class OrderWebController {
             //下单失败回到订单确认页重新确定订单信息
             if (responseVo.getCode() == 0) {
                 //成功
-                model.addAttribute("submitOrderResp",responseVo);
+                model.addAttribute("submitOrderResp", responseVo);
                 return "pay";
             } else {
                 String msg = "下单失败";
                 switch (responseVo.getCode()) {
-                    case 1: msg += "令牌订单信息过期，请刷新再次提交"; break;
-                    case 2: msg += "订单商品价格发生变化，请确认后再次提交"; break;
-                    case 3: msg += "库存锁定失败，商品库存不足"; break;
+                    case 1:
+                        msg += "令牌订单信息过期，请刷新再次提交";
+                        break;
+                    case 2:
+                        msg += "订单商品价格发生变化，请确认后再次提交";
+                        break;
+                    case 3:
+                        msg += "库存锁定失败，商品库存不足";
+                        break;
                 }
-                attributes.addFlashAttribute("msg",msg);
+                attributes.addFlashAttribute("msg", msg);
                 return "redirect:http://order.gulimall.com/toTrade";
             }
         } catch (Exception e) {
             if (e instanceof NoStockException) {
-                String message = ((NoStockException)e).getMessage();
-                attributes.addFlashAttribute("msg",message);
+                String message = ((NoStockException) e).getMessage();
+                attributes.addFlashAttribute("msg", message);
             }
             return "redirect:http://order.gulimall.com/toTrade";
         }

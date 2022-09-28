@@ -33,9 +33,12 @@ public class WxApiController {
 
     */
 /**
-     * 获取扫码人的信息，添加数据
-     * @return
-     *//*
+ * 获取扫码人的信息，添加数据
+ *
+ * @return 生成微信扫描二维码
+ * @return
+ * @throws UnsupportedEncodingException
+ *//*
 
     @GetMapping(value = "/callback")
     public String callback(String code,String state, HttpSession session) throws Exception {
@@ -90,10 +93,10 @@ public class WxApiController {
 
     */
 /**
-     * 生成微信扫描二维码
-     * @return
-     * @throws UnsupportedEncodingException
-     *//*
+ * 生成微信扫描二维码
+ * @return
+ * @throws UnsupportedEncodingException
+ *//*
 
     @GetMapping(value = "/login")
     public String getWxCode() throws UnsupportedEncodingException {

@@ -3,14 +3,11 @@ package com.atguigu.gulimall.ware.service;
 import com.atguigu.common.to.OrderTo;
 import com.atguigu.common.to.SkuHasStockVo;
 import com.atguigu.common.to.mq.StockLockedTo;
-import com.atguigu.gulimall.ware.vo.LockStockResultVo;
-import com.atguigu.gulimall.ware.vo.WareSkuLockVo;
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.gulimall.ware.entity.WareSkuEntity;
-import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.atguigu.gulimall.ware.vo.WareSkuLockVo;
+import com.baomidou.mybatisplus.extension.service.IService;
 
-import java.awt.print.Book;
 import java.util.List;
 import java.util.Map;
 
@@ -31,12 +28,14 @@ public interface WareSkuService extends IService<WareSkuEntity> {
 
     /**
      * 解锁库存
+     *
      * @param to
      */
     void unlockStock(StockLockedTo to);
 
     /**
      * 解锁订单
+     *
      * @param orderTo
      */
     void unlockStock(OrderTo orderTo);

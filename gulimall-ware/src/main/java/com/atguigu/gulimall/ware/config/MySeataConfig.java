@@ -19,11 +19,11 @@ public class MySeataConfig {
 
     */
 /**
-     * 需要将 DataSourceProxy 设置为主数据源，否则事务无法回滚
-     *
-     * @param dataSourceProperties
-     * @return
-     *//*
+ * 需要将 DataSourceProxy 设置为主数据源，否则事务无法回滚
+ *
+ * @param dataSourceProperties
+ * @return
+ *//*
 
     @Bean
     public DataSource dataSource(DataSourceProperties dataSourceProperties) {

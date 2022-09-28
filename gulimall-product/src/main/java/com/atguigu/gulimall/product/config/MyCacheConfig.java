@@ -1,4 +1,3 @@
-
 package com.atguigu.gulimall.product.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 
-
 @EnableConfigurationProperties(CacheProperties.class)
 @Configuration
 @EnableCaching
@@ -24,6 +22,7 @@ public class MyCacheConfig {
 
     /**
      * 配置文件的配置没有用上
+     *
      * @return
      */
     @Bean

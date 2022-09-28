@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * 订单
- * 
+ *
  * @author zhaoxiang
  * @email 1084691005@qq.com
  * @date 2022-08-20 16:05:32
@@ -16,6 +16,7 @@ import org.apache.ibatis.annotations.Param;
 public interface OrderDao extends BaseMapper<OrderEntity> {
     /**
      * 修改订单状态
+     *
      * @param orderSn
      * @param code
      * @param payType

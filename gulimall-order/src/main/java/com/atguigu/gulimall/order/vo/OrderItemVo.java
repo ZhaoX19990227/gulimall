@@ -28,6 +28,8 @@ public class OrderItemVo {
 
     private BigDecimal totalPrice;
 
-    /** 商品重量 **/
+    /**
+     * 商品重量
+     **/
     private BigDecimal weight = new BigDecimal("0.085");
 }

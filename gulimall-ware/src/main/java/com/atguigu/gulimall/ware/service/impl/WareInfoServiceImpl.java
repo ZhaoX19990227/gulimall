@@ -32,11 +32,11 @@ public class WareInfoServiceImpl extends ServiceImpl<WareInfoDao, WareInfoEntity
 
         QueryWrapper<WareInfoEntity> wareInfoEntityQueryWrapper = new QueryWrapper<>();
         String key = (String) params.get("key");
-        if(!StringUtils.isEmpty(key)){
-            wareInfoEntityQueryWrapper.eq("id",key).or()
-                    .like("name",key)
-                    .or().like("address",key)
-                    .or().like("areacode",key);
+        if (!StringUtils.isEmpty(key)) {
+            wareInfoEntityQueryWrapper.eq("id", key).or()
+                    .like("name", key)
+                    .or().like("address", key)
+                    .or().like("areacode", key);
         }
 
         IPage<WareInfoEntity> page = this.page(
@@ -49,6 +49,7 @@ public class WareInfoServiceImpl extends ServiceImpl<WareInfoDao, WareInfoEntity
 
     /**
      * 计算运费
+     *
      * @param addrId
      * @return
      */
@@ -60,13 +61,14 @@ public class WareInfoServiceImpl extends ServiceImpl<WareInfoDao, WareInfoEntity
         //收获地址的详细信息
         R addrInfo = memberFeignService.info(addrId);
 
-        MemberAddressVo memberAddressVo = addrInfo.getData("memberReceiveAddress",new TypeReference<MemberAddressVo>() {});
+        MemberAddressVo memberAddressVo = addrInfo.getData("memberReceiveAddress", new TypeReference<MemberAddressVo>() {
+        });
 
         if (memberAddressVo != null) {
             String phone = memberAddressVo.getPhone();
             //截取用户手机号码最后一位作为我们的运费计算
             //1558022051
-            String fare = phone.substring(phone.length() - 10, phone.length()-8);
+            String fare = phone.substring(phone.length() - 10, phone.length() - 8);
             BigDecimal bigDecimal = new BigDecimal(fare);
 
             fareVo.setFare(bigDecimal);

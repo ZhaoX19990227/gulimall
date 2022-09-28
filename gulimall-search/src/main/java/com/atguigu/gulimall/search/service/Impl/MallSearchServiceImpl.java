@@ -331,11 +331,11 @@ public class MallSearchServiceImpl implements MallSearchService {
         //===============以上可以从聚合信息中获取====================//
         //9、、分页信息-页码
         result.setPageNum(param.getPageNum());
-            //分页信息、总记录数
+        //分页信息、总记录数
         long total = hits.getTotalHits().value;
         result.setTotal(total);
 
-            //分页信息-总页码-计算
+        //分页信息-总页码-计算
         int totalPages = (int) total % EsConstant.PRODUCT_PAGESIZE == 0 ?
                 (int) total / EsConstant.PRODUCT_PAGESIZE : ((int) total / EsConstant.PRODUCT_PAGESIZE + 1);
         result.setTotalPages(totalPages);

@@ -31,7 +31,7 @@ public class OrderCloseListener {
             // 消息的标识，false只确认当前一个消息收到，true确认所有consumer获得的消息（成功消费，消息从队列中删除 ）
             // channel 的 basicAck 方法的第一个参数就是当前消费者的标签，
             // 第二个参数表示是否启用 RabbitMQ 的消费者自动 ACK ，如果要想手动对消费端进行 ACK ，那么这个属性一定不要开启，即将该属性的值设置为 false ，关闭消费端的 autoAck 才行。
-            channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
         } catch (Exception e) {
             //告诉服务器不应该由我处理，或者拒绝处理，扔掉
             //接收端在发送reject命令的时候可以选择是否要重新放回queue中。如果没有其他接收者监控这个queue的话，要注意一直无限循环发送的危险。
@@ -39,7 +39,7 @@ public class OrderCloseListener {
             //BasicReject一次只能拒绝接收一个消息，而BasicNack方法可以支持一次0个或多个消息的拒收，并且也可以设置是否requeue。
             //channel.BasicNack(3, true, false);
             //在第一个参数DeliveryTag中如果输入3，则消息DeliveryTag小于等于3的，这个Channel的，都会被拒收
-            channel.basicReject(message.getMessageProperties().getDeliveryTag(),true);
+            channel.basicReject(message.getMessageProperties().getDeliveryTag(), true);
         }
     }
 }

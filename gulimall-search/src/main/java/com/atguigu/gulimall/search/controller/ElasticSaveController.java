@@ -23,6 +23,7 @@ public class ElasticSaveController {
 
     /**
      * 上架
+     *
      * @param skuEsModels
      * @return
      */
@@ -32,13 +33,13 @@ public class ElasticSaveController {
         try {
             b = productSaveService.productStatusUp(skuEsModels);
         } catch (IOException e) {
-            log.error("ElasticSearchController商品上架错误：{}",e);
-            return R.error(BizCodeEnum.PRODUCT_UP_EXCEPTION.getCode(),BizCodeEnum.PRODUCT_UP_EXCEPTION.getMessage());
+            log.error("ElasticSearchController商品上架错误：{}", e);
+            return R.error(BizCodeEnum.PRODUCT_UP_EXCEPTION.getCode(), BizCodeEnum.PRODUCT_UP_EXCEPTION.getMessage());
         }
         if (!b) {
             return R.ok();
-        }else {
-            return R.error(BizCodeEnum.PRODUCT_UP_EXCEPTION.getCode(),BizCodeEnum.PRODUCT_UP_EXCEPTION.getMessage());
+        } else {
+            return R.error(BizCodeEnum.PRODUCT_UP_EXCEPTION.getCode(), BizCodeEnum.PRODUCT_UP_EXCEPTION.getMessage());
         }
     }
 

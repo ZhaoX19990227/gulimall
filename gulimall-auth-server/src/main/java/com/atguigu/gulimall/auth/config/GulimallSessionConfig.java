@@ -1,4 +1,3 @@
-
 package com.atguigu.gulimall.auth.config;
 
 import org.springframework.context.annotation.Bean;
@@ -10,7 +9,7 @@ import org.springframework.session.web.http.DefaultCookieSerializer;
 
 
 /**
- * @Description:    springSession配置类
+ * @Description: springSession配置类
  **/
 
 

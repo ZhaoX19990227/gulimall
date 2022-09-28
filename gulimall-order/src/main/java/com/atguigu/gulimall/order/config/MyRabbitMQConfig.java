@@ -1,4 +1,3 @@
-
 package com.atguigu.gulimall.order.config;
 
 import com.atguigu.gulimall.order.entity.OrderEntity;
@@ -17,8 +16,8 @@ public class MyRabbitMQConfig {
 
     @RabbitListener(queues = "order.release.order.queue")
     public void listener(OrderEntity entity, Channel channel, Message message) throws IOException {
-        System.out.println("收到过期消息，准备关闭订单："+entity.getOrderSn());
-        channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
+        System.out.println("收到过期消息，准备关闭订单：" + entity.getOrderSn());
+        channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
     }
 
     /* 容器中的Queue、Exchange、Binding 会自动创建（在RabbitMQ）不存在的情况下 */
@@ -135,7 +134,7 @@ public class MyRabbitMQConfig {
      * @return
      */
 
-    @Bean
+   /* @Bean
     public Queue orderSecKillOrrderQueue() {
         Queue queue = new Queue("order.seckill.order.queue", true, false, false);
         return queue;
@@ -153,5 +152,5 @@ public class MyRabbitMQConfig {
                 null);
 
         return binding;
-    }
+    }*/
 }

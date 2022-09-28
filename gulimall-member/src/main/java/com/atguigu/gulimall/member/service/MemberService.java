@@ -6,7 +6,6 @@ import com.atguigu.gulimall.member.exception.PhoneException;
 import com.atguigu.gulimall.member.exception.UsernameException;
 import com.atguigu.gulimall.member.vo.MemberUserLoginVo;
 import com.atguigu.gulimall.member.vo.MemberUserRegisterVo;
-import com.atguigu.gulimall.member.vo.SocialUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;
@@ -25,12 +24,14 @@ public interface MemberService extends IService<MemberEntity> {
 
     /**
      * 用户注册
+     *
      * @param vo
      */
     void register(MemberUserRegisterVo vo);
 
     /**
      * 判断手机号是否重复
+     *
      * @param phone
      * @return
      */
@@ -38,6 +39,7 @@ public interface MemberService extends IService<MemberEntity> {
 
     /**
      * 判断用户名是否重复
+     *
      * @param userName
      * @return
      */
@@ -45,6 +47,7 @@ public interface MemberService extends IService<MemberEntity> {
 
     /**
      * 用户登录
+     *
      * @param vo
      * @return
      */

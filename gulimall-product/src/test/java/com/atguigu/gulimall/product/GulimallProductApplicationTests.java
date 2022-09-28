@@ -8,7 +8,6 @@ import com.atguigu.gulimall.product.vo.SpuItemAttrGroupVo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,7 +42,7 @@ public class GulimallProductApplicationTests {
     AttrGroupService attrGroupService;
 
     @Test
-    public void testFindPath(){
+    public void testFindPath() {
         Long[] path = categoryService.findCatelogPath(225L);
         log.info("完整路径:{}", Arrays.asList(path));
     }
@@ -60,15 +59,16 @@ public class GulimallProductApplicationTests {
     }
 
     @Test
-    public void redis(){
+    public void redis() {
         ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
-        ops.set("xiaopang","nihao!"+ UUID.randomUUID().toString());
+        ops.set("xiaopang", "nihao!" + UUID.randomUUID().toString());
 
         String xiaopang = ops.get("xiaopang");
         System.out.println(xiaopang);
     }
+
     @Test
-    public void test(){
+    public void test() {
         List<SpuItemAttrGroupVo> attrGroupWithAttrsBySpuId = attrGroupService.getAttrGroupWithAttrsBySpuId(13L, 225L);
         System.out.println(attrGroupWithAttrsBySpuId);
     }

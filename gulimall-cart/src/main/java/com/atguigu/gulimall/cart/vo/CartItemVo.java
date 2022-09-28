@@ -86,6 +86,7 @@ public class CartItemVo {
 
     /**
      * 计算当前购物项总价
+     *
      * @return
      */
     public BigDecimal getTotalPrice() {

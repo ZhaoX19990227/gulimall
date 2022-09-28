@@ -1,4 +1,3 @@
-
 package com.atguigu.gulimall.product.web;
 
 import com.atguigu.gulimall.product.service.SkuInfoService;
@@ -12,14 +11,15 @@ import javax.annotation.Resource;
 import java.util.concurrent.ExecutionException;
 
 
-
 @Controller
 public class ItemController {
 
     @Resource
     private SkuInfoService skuInfoService;
-/**
+
+    /**
      * 展示当前sku的详情
+     *
      * @param skuId
      * @return
      */
@@ -30,8 +30,8 @@ public class ItemController {
         System.out.println("准备查询" + skuId + "详情");
 
         SkuItemVo vos = skuInfoService.item(skuId);
-        
-        model.addAttribute("item",vos);
+
+        model.addAttribute("item", vos);
 
         return "item";
     }

@@ -10,6 +10,7 @@ public interface ProductFeignService {
 
     /**
      * 根据skuId查询spu的信息
+     *
      * @param skuId
      * @return
      */

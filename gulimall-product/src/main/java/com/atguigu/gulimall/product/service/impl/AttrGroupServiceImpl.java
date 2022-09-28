@@ -62,6 +62,7 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
 
     /**
      * 根据三级分类查出所有的分组以及分组中的属性
+     *
      * @param catelogId
      * @return
      */
@@ -86,7 +87,7 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
         //查出当前spu的所有属性的分组信息以及当前分组下所有属性对应的值
         //1、当前spu有多少属性分组
         //2、
-        List<SpuItemAttrGroupVo> vos = this.baseMapper.getAttrGroupWithAttrsBySpuId(spuId,catalogId);
+        List<SpuItemAttrGroupVo> vos = this.baseMapper.getAttrGroupWithAttrsBySpuId(spuId, catalogId);
         return vos;
     }
 }

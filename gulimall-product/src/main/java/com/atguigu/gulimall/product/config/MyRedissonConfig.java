@@ -18,10 +18,11 @@ public class MyRedissonConfig {
 
     */
 /**
-     * 所有对Redisson的使用都是通过RedissonClient
-     * @return
-     * @throws IOException
-     *//*
+ * 所有对Redisson的使用都是通过RedissonClient
+ *
+ * @return
+ * @throws IOException
+ *//*
 
     @Bean(destroyMethod="shutdown")
     public RedissonClient redisson() throws IOException {

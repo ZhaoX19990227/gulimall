@@ -17,10 +17,14 @@ public class OrderCreateTo {
      */
     private List<OrderItemEntity> orderItems;
 
-    /** 订单计算的应付价格 **/
+    /**
+     * 订单计算的应付价格
+     **/
     private BigDecimal payPrice;
 
-    /** 运费 **/
+    /**
+     * 运费
+     **/
     private BigDecimal fare;
 
 }

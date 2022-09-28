@@ -10,6 +10,7 @@ public interface CartService {
 
     /**
      * 将商品添加至购物车
+     *
      * @param skuId
      * @param num
      * @return
@@ -18,6 +19,7 @@ public interface CartService {
 
     /**
      * 获取购物车某个购物项
+     *
      * @param skuId
      * @return
      */
@@ -25,18 +27,21 @@ public interface CartService {
 
     /**
      * 获取购物车里面的信息
+     *
      * @return
      */
     CartVo getCart() throws ExecutionException, InterruptedException;
 
     /**
      * 清空购物车的数据
+     *
      * @param cartKey
      */
     public void clearCartInfo(String cartKey);
 
     /**
      * 勾选购物项
+     *
      * @param skuId
      * @param check
      */
@@ -44,6 +49,7 @@ public interface CartService {
 
     /**
      * 改变商品数量
+     *
      * @param skuId
      * @param num
      */
@@ -52,6 +58,7 @@ public interface CartService {
 
     /**
      * 删除购物项
+     *
      * @param skuId
      */
     void deleteIdCartInfo(Integer skuId);

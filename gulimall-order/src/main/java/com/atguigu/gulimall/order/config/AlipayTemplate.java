@@ -1,4 +1,3 @@
-
 package com.atguigu.gulimall.order.config;
 
 import com.alipay.api.AlipayApiException;
@@ -24,7 +23,7 @@ public class AlipayTemplate {
 
     // 服务器[异步通知]页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
     // 支付宝会悄悄的给我们发送一个请求，告诉我们支付成功的信息
-    public String notify_url="https://a926-240e-3a1-a36-f00-70d3-f53e-52ce-f19d.ap.ngrok.io/payed/notify";
+    public String notify_url = "https://a926-240e-3a1-a36-f00-70d3-f53e-52ce-f19d.ap.ngrok.io/payed/notify";
 
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
     //同步通知，支付成功，一般跳转到成功页

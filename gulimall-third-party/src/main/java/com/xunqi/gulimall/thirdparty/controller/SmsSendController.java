@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.annotation.Resource;
 
 
-
 @Controller
 @RequestMapping(value = "/sms")
 public class SmsSendController {
@@ -20,6 +19,7 @@ public class SmsSendController {
 
     /**
      * 提供给别的服务进行调用
+     *
      * @param phone
      * @param code
      * @return
@@ -28,7 +28,7 @@ public class SmsSendController {
     public R sendCode(@RequestParam("phone") String phone, @RequestParam("code") String code) {
 
         //发送验证码
-        smsComponent.sendCode(phone,code);
+        smsComponent.sendCode(phone, code);
 
         return R.ok();
     }

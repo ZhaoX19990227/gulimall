@@ -15,20 +15,20 @@
         <version>2.3.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-<modules>
-    <module>gulimall-coupon</module>
-    <module>gulimall-member</module>
-    <module>gulimall-order</module>
-    <module>gulimall-product</module>
-    <module>gulimall-ware</module>
-    <module>gulimall-common</module>
-    <module>gulimall-gateway</module>
-    <module>renren-fast</module>
-    <module>gulimall-third-party</module>
-    <module>gulimall-search</module>
-    <module>gulimall-auth-server</module>
-    <module>gulimall-cart</module>
-</modules>
+    <modules>
+        <module>gulimall-coupon</module>
+        <module>gulimall-member</module>
+        <module>gulimall-order</module>
+        <module>gulimall-product</module>
+        <module>gulimall-ware</module>
+        <module>gulimall-common</module>
+        <module>gulimall-gateway</module>
+        <module>renren-fast</module>
+        <module>gulimall-third-party</module>
+        <module>gulimall-search</module>
+        <module>gulimall-auth-server</module>
+        <module>gulimall-cart</module>
+    </modules>
     <dependencyManagement>
         <dependencies>
             <dependency>

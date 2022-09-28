@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * 商品属性
- * 
+ *
  * @author zhaoxiang
  * @email 1084691005@qq.com
  * @date 2022-08-20 14:52:06

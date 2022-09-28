@@ -5,15 +5,15 @@ import lombok.Data;
 import java.util.List;
 
 
-
 @Data
 public class WareSkuLockVo {
 
     private String orderSn;
 
-    /** 需要锁住的所有订单信息 **/
+    /**
+     * 需要锁住的所有订单信息
+     **/
     private List<OrderItemVo> locks;
-
 
 
 }

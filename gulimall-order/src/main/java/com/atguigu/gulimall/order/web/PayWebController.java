@@ -29,7 +29,7 @@ public class PayWebController {
     @Resource
     private WxPayConfig wxPayConfig;*/
 
-/*
+    /*
      * 用户下单:支付宝支付
      * 1、让支付页让浏览器展示
      * 2、支付成功以后，跳转到用户的订单列表页
@@ -39,7 +39,7 @@ public class PayWebController {
      */
 
     @ResponseBody
-    @GetMapping(value = "/aliPayOrder",produces = "text/html")
+    @GetMapping(value = "/aliPayOrder", produces = "text/html")
     public String aliPayOrder(@RequestParam("orderSn") String orderSn) throws AlipayApiException {
 
         PayVo payVo = orderService.getOrderPay(orderSn);
@@ -49,7 +49,7 @@ public class PayWebController {
     }
 
 
-/*
+    /*
      * 微信支付
      * @param orderSn
      * @return

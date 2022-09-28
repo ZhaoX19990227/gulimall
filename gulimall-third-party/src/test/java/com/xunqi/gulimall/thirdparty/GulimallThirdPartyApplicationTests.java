@@ -20,36 +20,36 @@ import java.util.Map;
 @SpringBootTest
 public class GulimallThirdPartyApplicationTests {
 
-   /* @Resource
-    private SmsComponent smsComponent;
+    /* @Resource
+     private SmsComponent smsComponent;
 
-    @Test
-    public void sendSmsCode() {
-        smsComponent.sendCode("15580220501", "134531");
-    }
+     @Test
+     public void sendSmsCode() {
+         smsComponent.sendCode("15580220501", "134531");
+     }
 
-    @Test
-    public void testUpload() throws FileNotFoundException {
-        // Endpoint以杭州为例，其它Region请按实际情况填写。
-        String endpoint = "oss-cn-beijing.aliyuncs.com";
-        // 云账号AccessKey有所有API访问权限，建议遵循阿里云安全最佳实践，创建并使用RAM子账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建。
-        String accessKeyId = "LTAI4G66cCNM2t7LKE79RaY3";
-        String accessKeySecret = "wd0KVDLCO1vVXq4q9aIPTXY7AP7rdW";
+     @Test
+     public void testUpload() throws FileNotFoundException {
+         // Endpoint以杭州为例，其它Region请按实际情况填写。
+         String endpoint = "oss-cn-beijing.aliyuncs.com";
+         // 云账号AccessKey有所有API访问权限，建议遵循阿里云安全最佳实践，创建并使用RAM子账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建。
+         String accessKeyId = "LTAI4G66cCNM2t7LKE79RaY3";
+         String accessKeySecret = "wd0KVDLCO1vVXq4q9aIPTXY7AP7rdW";
 
-        // 创建OSSClient实例。
-        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
+         // 创建OSSClient实例。
+         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
 
-        // 上传文件流。
-        InputStream inputStream = new FileInputStream("C:\\Users\\Jerry\\Desktop\\1.png");
+         // 上传文件流。
+         InputStream inputStream = new FileInputStream("C:\\Users\\Jerry\\Desktop\\1.png");
 
-        ossClient.putObject("gulimall-clouds", "1.png", inputStream);
+         ossClient.putObject("gulimall-clouds", "1.png", inputStream);
 
-        // 关闭OSSClient。
-        ossClient.shutdown();
+         // 关闭OSSClient。
+         ossClient.shutdown();
 
-        System.out.println("上传成功...");
-    }
-    }*/
+         System.out.println("上传成功...");
+     }
+     }*/
     @Autowired
     OSSClient ossClient;
 
@@ -64,7 +64,7 @@ public class GulimallThirdPartyApplicationTests {
     }
 
     @Test
-    public void sendMsg(){
+    public void sendMsg() {
         String host = "https://dfsns.market.alicloudapi.com";
         String path = "/data/send_sms";
         String method = "POST";
@@ -96,8 +96,8 @@ public class GulimallThirdPartyApplicationTests {
     SmsComponent smsComponent;
 
     @Test
-    public void testMsg2(){
-        smsComponent.sendCode("19851787162","code:9421");
+    public void testMsg2() {
+        smsComponent.sendCode("19851787162", "code:9421");
     }
 
 }

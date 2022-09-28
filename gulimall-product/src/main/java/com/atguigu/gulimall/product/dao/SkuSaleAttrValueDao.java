@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * sku销售属性&值
- * 
+ *
  * @author zhaoxiang
  * @email 1084691005@qq.com
  * @date 2022-08-20 14:53:41

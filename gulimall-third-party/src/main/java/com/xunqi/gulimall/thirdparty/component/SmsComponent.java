@@ -21,7 +21,7 @@ public class SmsComponent {
     private String appcode;
     private String template_id;
 
-    public void sendCode(String phone,String code) {
+    public void sendCode(String phone, String code) {
         String method = "POST";
         Map<String, String> headers = new HashMap<String, String>();
         headers.put("Authorization", "APPCODE " + appcode);
@@ -32,7 +32,7 @@ public class SmsComponent {
         bodys.put("phone_number", phone);
         bodys.put("template_id", template_id);
         try {
-            HttpResponse response = HttpUtils.doPost(host, path, method, headers,querys,bodys);
+            HttpResponse response = HttpUtils.doPost(host, path, method, headers, querys, bodys);
             System.out.println(response.toString());
             //状态码: 200 正常；400 URL无效；401 appCode错误； 403 次数用完； 500 API网管错误
             //获取response的body

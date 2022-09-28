@@ -106,7 +106,7 @@ public class Constant {
      * 云服务商
      */
     public enum CloudService {
-       /* *//**
+        /* *//**
          * 七牛云
          *//*
         QINIU(1, QiniuGroup.class),
