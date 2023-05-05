@@ -44,6 +44,7 @@ public class PayWebController {
 
         PayVo payVo = orderService.getOrderPay(orderSn);
         String pay = alipayTemplate.pay(payVo);
+        //pay就是一个支付的页面
         System.out.println(pay);
         return pay;
     }
